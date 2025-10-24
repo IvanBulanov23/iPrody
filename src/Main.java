@@ -1,92 +1,61 @@
 import java.util.Arrays;
+import java.util.Random;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        replacingTheMethod(new int[]{0, 1, 1, 1, 1, 0, 0});
-        creating_an_array();
-        array_multiplication(new int[] {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1});
-        filling_the_diagonal();
-        filling_the_diagonal2();
-        filling_the_array(6, 7);
-        searching_for_array_boundaries (new int[] {-1, 5, -3, 2, 9, 4, 5, 2, 4, 8, 9, 1});
+
+//        int[] array = {3, 5, 2, 1, 4, 5};
+//        int[] array2 = {1, 5, 7};
+//        arrayCopy(array, array2);
+        int[] array3 = {3, 6, 9, 10, 3, 5, 2, 4, 7};
+        sortingSheker(array3);
+
 
     }
 
-    public static void replacingTheMethod(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == 0) {
-                array[i] = 1;
-            } else if (array[i] == 1) {
-                array[i] = 0;
+    public static void arrayCopy (int[] array, int[] array2){ //O(n)
+        int [] result = new int[array.length + array2.length];
+        if (array2.length > 0) {       //1
+            for (int i = 0; i < array.length; i++){  //n
+                result[i] = array[i];
             }
-
+            for (int i = 0; i < array2.length; i++){  //n
+            result[i+array.length] = array2[i];
+            }
         }
-
-        System.out.println(Arrays.toString(array));
-    }
-    public static void creating_an_array (){
-        int[] array = new int[100];
-        for (int i = 0; i < array.length; i++) {
-            array[i]=i++;
-        }
-
-        System.out.println(Arrays.toString(array));
-
-    }
-    public static void array_multiplication(int [] array){
-        for (int i = 0; i < array.length; i++){
-            if (array[i] < 6)
-                array[i]*=2;
-        }
-
-        System.out.println(Arrays.toString(array));
+        else result = array;
+        System.out.println(Arrays.toString(result));
     }
 
-    public static void filling_the_diagonal (){
-        int [][] array = new int [5] [5];
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (i == j) {
-                    array[i][j] = 1;
+    public static void sortingSheker (int[] array){
+        int leftIndex = 0, righIndex = array.length - 1;
+        int hou;
+        do {
+            int tempRightIndex = righIndex;
+            for (int i = leftIndex; i < tempRightIndex ; i++) {
+                if (array[i] > array[i+1]){
+                hou = array[i+1];
+                array[i+1] = array[i];
+                array[i] = hou;
+                righIndex = i;
                 }
-
-                System.out.print(array[i][j]);
             }
-
-            System.out.println();
-        }
-
-    }
-    public static void filling_the_diagonal2 () {
-        int[][] array = new int[5][5];
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (i == j || i + j == array[i].length - 1) {
-                    array[i][j] = 1;
+            if (tempRightIndex == righIndex){
+                break;
+            }
+            int tempLeftIndex = leftIndex;
+            for (int i = righIndex; i >= tempLeftIndex ; i--){
+                if (array[i] > array[i+1]){
+                    hou = array[i+1];
+                    array[i+1] = array[i];
+                    array[i] = hou;
+                    leftIndex = i;
                 }
-
-                System.out.print(array[i][j]);
             }
-
-            System.out.println();
         }
-    }
-    public static void filling_the_array (int len, int initialValue){
-        int[] array = new int[len];
-        for (int i = 0; i < array.length; i++) {
-            array[i]=initialValue;
-        }
+        while (leftIndex < righIndex);
         System.out.println(Arrays.toString(array));
-
     }
-
-    public static void searching_for_array_boundaries (int[] array){
-        Arrays.sort(array);
-        System.out.println("min value = " + array[0]);
-        System.out.println("max value = " + array[array.length - 1]);
-
-    }
-
 }
