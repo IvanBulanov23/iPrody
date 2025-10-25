@@ -6,12 +6,14 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 
-//        int[] array = {3, 5, 2, 1, 4, 5};
-//        int[] array2 = {1, 5, 7};
-//        arrayCopy(array, array2);
+        int[] array = {3, 5, 2, 1, 4, 5};
+        int[] array2 = {1, 5, 7};
+        arrayCopy(array, array2);
         int[] array3 = {3, 6, 9, 10, 3, 5, 2, 4, 7};
         sortingSheker(array3);
-
+        Car car = new Car();
+        car.start();
+        Employee employee = new Employee("ФИО", "email", "telephone", 19);
 
     }
 
@@ -58,4 +60,5 @@ public class Main {
         while (leftIndex < righIndex);
         System.out.println(Arrays.toString(array));
     }
+
 }
