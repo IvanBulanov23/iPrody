@@ -1,18 +1,16 @@
 import java.lang.invoke.StringConcatException;
 
 public class Employee {
+    private String sfp;
+    private String email;
+    private String telephone;
+    private int age;
     public Employee(String sfp, String email, String telephone, int age) {
         this.sfp = sfp;
         this.email = email;
         this.telephone = telephone;
         this.age = age;
     }
-
-    private String sfp;
-    private String email;
-    private String telephone;
-    private int age;
-
     public String getSfp() {
         return sfp;
     }
