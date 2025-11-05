@@ -1,45 +1,39 @@
-import java.lang.invoke.StringConcatException;
+import org.w3c.dom.ls.LSOutput;
 
 public class Employee {
-    private String sfp;
+//    ФИО, должность, email, телефон, зарплата, возраст
+    private String name;
+    private String post;
     private String email;
     private String telephone;
+    private Double salary;
     private int age;
-    public Employee(String sfp, String email, String telephone, int age) {
-        this.sfp = sfp;
+
+    public Employee(String name, String post, String email, String telephone, Double salary, int age) {
+        this.name = name;
+        this.post = post;
         this.email = email;
         this.telephone = telephone;
+        this.salary = salary;
         this.age = age;
-    }
-    public String getSfp() {
-        return sfp;
-    }
-
-    public void setSfp(String sfp) {
-        this.sfp = sfp;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void print(){
+        System.out.println("name: " + name + ", post: " + post + ", email: " + email + ", telephone: " + telephone + ", salary: " + salary + ", age: " + age);
     }
+
+    @Override
+    public String toString() {
+        return "name: " + name +
+                ", post: " + post +
+                ", email: " + email +
+                ", telephone: " + telephone +
+                ", salary: " + salary +
+                ", age: " + age;
+    }
+
 }

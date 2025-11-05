@@ -2,50 +2,18 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
+        Employee ivanov = new Employee("Иванов Иван Иванович", "fitter", "ivanov@mal.ru", "89184441379", 130d, 56);
+        Employee obezhev = new Employee("Объезжев Алексей Николаевич", "engineer", "obezhev@mal.ru", "89181245512", 150d, 45);
+        Employee zobnin = new Employee("Зобнин Дмитрий Анатольевич", "buyer", "zobnin@mal.ru", "89181442876", 140d, 32);
+        Employee titov = new Employee("Титов Матвей Владимирович", "director", "titov@mal.ru", "89181243667", 210d, 41);
+        Employee zamkovaya = new Employee("Замковая Мария Дмитриевна", "secretary", "zamkovaya@mal.ru", "89184841394", 120d, 25);
 
-        int count = findSymbolOccurance("Helo moto", 'o');
-        System.out.println(count);
-        int value = findWordPosition("Apollo", "polla");
-        System.out.println(value);
-        stringReverse("Hello");
-        System.out.println(isPalindrome("ohg3gho"));
-        StringGame.startGame();
-    }
-
-    public static int findSymbolOccurance(String str, char chr) {
-        int count = 0;
-
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == chr)
-                count++;
-
-        }
-        return count;
-
-    }
-
-    public static int findWordPosition(String source, String target) {
-        if (source.contains(target))
-            return 1;
-        else return -1;
-
-    }
-
-    public static void stringReverse(String stringBuilder) {
-        StringBuilder strb = new StringBuilder(stringBuilder);
-        strb.reverse().toString();
-        System.out.println(strb);
-    }
-
-
-    public static boolean isPalindrome(String strb) {
-        int length = strb.length();
-        for (int i = 0; i < length / 2; i++) {
-            if (strb.charAt(i) != strb.charAt(length - i - 1)) {
-                return false;
+        Employee[] employees = new Employee[]{ivanov, obezhev, zobnin, titov, zamkovaya};
+        for (Employee emp : employees) {
+            if (emp.getAge() > 40) { // или if (emp.age > 40)
+                emp.print();
             }
         }
-        return true;
-    }
 
+    }
 }
