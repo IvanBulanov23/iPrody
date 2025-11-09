@@ -2,18 +2,29 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        Employee ivanov = new Employee("Иванов Иван Иванович", "fitter", "ivanov@mal.ru", "89184441379", 130d, 56);
-        Employee obezhev = new Employee("Объезжев Алексей Николаевич", "engineer", "obezhev@mal.ru", "89181245512", 150d, 45);
-        Employee zobnin = new Employee("Зобнин Дмитрий Анатольевич", "buyer", "zobnin@mal.ru", "89181442876", 140d, 32);
-        Employee titov = new Employee("Титов Матвей Владимирович", "director", "titov@mal.ru", "89181243667", 210d, 41);
-        Employee zamkovaya = new Employee("Замковая Мария Дмитриевна", "secretary", "zamkovaya@mal.ru", "89184841394", 120d, 25);
+        Cat cat1 = new Cat("Маркиз");
+        Cat cat2 = new Cat("Толик");
+        cat1.swim(21);
+        cat1.run(12);
+        cat2.swim(-1);
+        cat2.run(330);
+        System.out.println(cat1.getId());
+        System.out.println(cat2.getId());
 
-        Employee[] employees = new Employee[]{ivanov, obezhev, zobnin, titov, zamkovaya};
-        for (Employee emp : employees) {
-            if (emp.getAge() > 40) { // или if (emp.age > 40)
-                emp.print();
-            }
-        }
+        Dog dog1 = new Dog("Альма");
+        Dog dog2 = new Dog("Барон");
+        Dog dog3 = new Dog("Босс");
+        dog1.swim(10);
+        dog1.run(30);
+        dog2.swim(-30);
+        dog2.run(-30);
+        dog3.swim(30);
+        dog3.run(450);
+        System.out.println(dog1.getId());
+        System.out.println(dog2.getId());
+        System.out.println(dog3.getId());
+
+
 
     }
 }
