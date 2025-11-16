@@ -1,29 +1,36 @@
+import java.util.ArrayList;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        Cat cat1 = new Cat("Маркиз");
-        Cat cat2 = new Cat("Толик");
-        cat1.swim(21);
-        cat1.run(12);
-        cat2.swim(-1);
-        cat2.run(330);
-        System.out.println(cat1.getId());
-        System.out.println(cat2.getId());
+        String[][] array = new String[][]{{"1", "1", "1"}, {"1", "1", "1", "1"}, {"1", "1", "1", "1"}, {"1", "1", "1", "1"}};
+        String[][] array1 = new String[][]{{"1", "1", "1", "1"}, {"1", "1ы", "1", "1"}, {"1", "1", "1", "1"}, {"1", "1", "1", "1"}};
+        String[][] array2 = new String[][]{{"1", "1", "1", "1"}, {"1", "1", "1", "1"}, {"1", "1", "1", "1"}, {"1", "1", "1", "1"}};
 
-        Dog dog1 = new Dog("Альма");
-        Dog dog2 = new Dog("Барон");
-        Dog dog3 = new Dog("Босс");
-        dog1.swim(10);
-        dog1.run(30);
-        dog2.swim(-30);
-        dog2.run(-30);
-        dog3.swim(30);
-        dog3.run(450);
-        System.out.println(dog1.getId());
-        System.out.println(dog2.getId());
-        System.out.println(dog3.getId());
+        ArrayValueCalculator arrayValueCalculator = new ArrayValueCalculator();
+        try {
+            int result = arrayValueCalculator.doCalc(array);
+            System.out.println(result);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
+        ArrayValueCalculator arrayValueCalculator1 = new ArrayValueCalculator();
+        try {
+            int result1 = arrayValueCalculator1.doCalc(array1);
+            System.out.println(result1);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
+
+        ArrayValueCalculator arrayValueCalculator2 = new ArrayValueCalculator();
+        try {
+            int result2 = arrayValueCalculator2.doCalc(array2);
+            System.out.println(result2);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
