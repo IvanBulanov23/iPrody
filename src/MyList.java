@@ -1,25 +1,38 @@
 import java.util.Arrays;
 
 public class MyList {
-    private static final double EX = 1.6;
-    public int[] arr;
+    private static final double EXPAND_MULTIPLIER = 1.6;
+    public Object[] arr;
     private int length = 0;
-    public MyList (int size){
-        arr = new int[size];
-    };
-    public void add (int value){
-        if(arr.length <= length){
-            EX_CAP((int) (arr.length*EX));
+
+    public MyList(int size) {
+        arr = new Object[size];
+    }
+
+
+    public void add(Object value) {
+        if (arr.length <= length) {
+            initializationArray((int) (arr.length * EXPAND_MULTIPLIER));
         }
         arr[length] = value;
         length++;
     }
 
+    public Object get(int index) {
+        if (index < 0 || index >= arr.length)
+            throw new IndexOutOfBoundsException("Index " + index + " does not exist in array");
+        return arr[index];
+    }
+
     public int getLength() {
+        return this.length;
+    }
+    public int getAllLength(){
         return this.arr.length;
     }
-    public void EX_CAP(int newSize){
-        int[] newArr = new int[newSize];
+
+    public void initializationArray(int newSize) {
+        Object[] newArr = new Object[newSize];
         System.arraycopy(arr, 0, newArr, 0, arr.length);
         arr = newArr;
     }
