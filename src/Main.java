@@ -38,8 +38,28 @@ public class Main {
         System.out.println(myQueue.remove());
         System.out.println(myQueue.remove());
 
-        myQueue.print();
+        ArrayValueCalculator arrayValueCalculator = new ArrayValueCalculator();
+        try {
+            int result = arrayValueCalculator.doCalc(array);
+            System.out.println(result);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
+        ArrayValueCalculator arrayValueCalculator1 = new ArrayValueCalculator();
+        try {
+            int result1 = arrayValueCalculator1.doCalc(array1);
+            System.out.println(result1);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
+        ArrayValueCalculator arrayValueCalculator2 = new ArrayValueCalculator();
+        try {
+            int result2 = arrayValueCalculator2.doCalc(array2);
+            System.out.println(result2);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
