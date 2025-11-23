@@ -14,7 +14,28 @@ public class Main {
         double area = AreaCalculation.areaCalculation(figures);
         System.out.printf("%.2f%n", area);
 
+        ArrayValueCalculator arrayValueCalculator = new ArrayValueCalculator();
+        try {
+            int result = arrayValueCalculator.doCalc(array);
+            System.out.println(result);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
+        ArrayValueCalculator arrayValueCalculator1 = new ArrayValueCalculator();
+        try {
+            int result1 = arrayValueCalculator1.doCalc(array1);
+            System.out.println(result1);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
+        ArrayValueCalculator arrayValueCalculator2 = new ArrayValueCalculator();
+        try {
+            int result2 = arrayValueCalculator2.doCalc(array2);
+            System.out.println(result2);
+        } catch (ArraySizeException | ArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
