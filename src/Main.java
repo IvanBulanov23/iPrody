@@ -1,34 +1,30 @@
-import Task1.Tast1;
-import phonebook.TelephoneDirectory;
-
-import java.util.*;
-
+import iprody.coffeeshot.CoffeeOrderBoard;
 public class Main {
     public static void main(String[] args) {
-        List<String> stringList = new ArrayList<>(List.of("Petr", "Anna", "Ivan", "Olya", "Anna", "Anna", "Olya",
-                "Anna", "Ivan", "Ivan", "Oleg"));
-        int occurance = Tast1.countOccurance(stringList, "Anna");
-        System.out.println(occurance);
+        CoffeeOrderBoard coffeeOrderBoard = new CoffeeOrderBoard();
+        coffeeOrderBoard.add("Ivan");
+        coffeeOrderBoard.add("Nikolay");
+        coffeeOrderBoard.add("Sergey");
+        coffeeOrderBoard.add("Lola");
+        coffeeOrderBoard.add("Zina");
+        coffeeOrderBoard.add("Launda");
 
-        int[] arr = {1, 2, 3, 4};
-        System.out.println(Arrays.toString(arr));
-        List<Integer> integerList = Tast1.toList(arr);
-        System.out.println(integerList);
+        CoffeeOrderBoard coffeeOrderBoard1 = new CoffeeOrderBoard();
+        coffeeOrderBoard1.add("Ivan");
+        coffeeOrderBoard1.add("Nikolay");
+        coffeeOrderBoard1.add("Sergey");
+        coffeeOrderBoard1.add("Lola");
 
-        List<Integer> integersList1 = new ArrayList<>(List.of(1, 2, 3, 4, 5, 1, 2, 4, 3, 5, 7, 2, 1, 2));
-        System.out.println(Tast1.findUnique(integersList1));
+        coffeeOrderBoard.draw();
+        coffeeOrderBoard1.draw();
 
-        Tast1.calcOccurance(stringList);
+        coffeeOrderBoard.deliver();
 
-        
-        TelephoneDirectory telephoneDirectory = new TelephoneDirectory();
-        telephoneDirectory.add("Arshavin Andrey", "89174446871");
-        telephoneDirectory.add("Zhirkov Yuri", "89613354768");
-        telephoneDirectory.add("Arshavin Andrey", "89054336877");
-        telephoneDirectory.add("Aldonin Evgeniy", "89113648425");
-        System.out.println(telephoneDirectory.find("Zhirkov"));
-        System.out.println(telephoneDirectory.findAll("Arshavin Andrey"));
+        coffeeOrderBoard.deliver(4);
 
+        coffeeOrderBoard.draw();
+
+        coffeeOrderBoard.deliver(8);
 
     }
 
