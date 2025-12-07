@@ -1,31 +1,25 @@
-import iprody.coffeeshot.CoffeeOrderBoard;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        CoffeeOrderBoard coffeeOrderBoard = new CoffeeOrderBoard();
-        coffeeOrderBoard.add("Ivan");
-        coffeeOrderBoard.add("Nikolay");
-        coffeeOrderBoard.add("Sergey");
-        coffeeOrderBoard.add("Lola");
-        coffeeOrderBoard.add("Zina");
-        coffeeOrderBoard.add("Launda");
-
-        CoffeeOrderBoard coffeeOrderBoard1 = new CoffeeOrderBoard();
-        coffeeOrderBoard1.add("Ivan");
-        coffeeOrderBoard1.add("Nikolay");
-        coffeeOrderBoard1.add("Sergey");
-        coffeeOrderBoard1.add("Lola");
-
-        coffeeOrderBoard.draw();
-        coffeeOrderBoard1.draw();
-
-        coffeeOrderBoard.deliver();
-
-        coffeeOrderBoard.deliver(4);
-
-        coffeeOrderBoard.draw();
-
-        coffeeOrderBoard.deliver(8);
-
+        int[][] map = {
+                {1, 1, 2, 1, 1},
+                {1, 1, 2, 2, 1},
+                {2, 2, 1, 2, 2},
+                {2, 2, 2, 2, 1},
+                {1, 1, 1, 2, 2}
+        };
+        System.out.println("Исходная карта:");
+        printMap(map);
+        Voyager dfsVoyager = new DfsVoyager();
+        int dfsCount = dfsVoyager.lookupIslands(map);
+        System.out.println("Количество островов: " + dfsCount);
+        printMap(map);
     }
 
+    private static void printMap(int[][] map) {
+        for (int[] row : map) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
 }
