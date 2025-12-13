@@ -58,4 +58,9 @@ public class Main {
         return new ArrayList<>(Arrays.asList(arrays));
     }
 
+    private static void printMap(int[][] map) {
+        for (int[] row : map) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
 }
