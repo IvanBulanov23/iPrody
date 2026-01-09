@@ -1,104 +1,75 @@
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        ThreadSafeList<Integer> intThreadSafeList = new ThreadSafeList<>();
+        Thread addThread = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                intThreadSafeList.add(i);
+            }
+            System.out.println("Thread 1 Go");
+        });
+        Thread addThread1 = new Thread(() -> {
+            for (int i = 10; i < 20; i++) {
+                intThreadSafeList.add(i);
+            }
+            System.out.println("Thread 2 Go");
+        });
 
-        randomInt();
-        List<Integer> integerList = List.of(1, 2, 3, 4, 5, 6);
-        Predicate<Integer> integerPredicate = integer -> integer > 4;
-        List<Integer> filterList = filterCollection(integerList, integerPredicate);
-        System.out.println(filterList);
+        Thread removeThread = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                if (intThreadSafeList.size() > 0) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    intThreadSafeList.remove(i);
+                }
+            }
+            System.out.println("Thread 3 Go");
+        });
+        Thread getThread = new Thread(() -> {
+            for (int i = 0; i < intThreadSafeList.size(); i++) {
+                System.out.println(intThreadSafeList.get(i));
+            }
+            System.out.println("Thread 4 Go");
+        });
 
-        List<String> stringList = List.of("Hello", ",", "world", "!");
-        Predicate<String> stringPredicate = s -> s.length() > 4;
-        String s = filterCollectionPredicat(stringList, stringPredicate);
-        System.out.println(s);
+        addThread.start();
+        addThread1.start();
+        removeThread.start();
+        getThread.start();
+
+        addThread.join();
+        addThread1.join();
+        removeThread.join();
+        getThread.join();
+        System.out.println(intThreadSafeList.size());
 
 
-        List<Integer> input = List.of(15, 23, 53, 3, 14, 55, 6, 9, 10, 10, 53);
 
-        List<Integer> ascList = uniqueSorted(input, SortDirection.ASC);
-        System.out.println(ascList);
+        PetrolStation station = new PetrolStation(100.0);
+        ExecutorService executor = Executors.newFixedThreadPool(10);
 
-        List<Integer> descList = uniqueSorted(input, SortDirection.DESC);
-        System.out.println(descList);
-        System.out.println(factorial(3));
+        for (int j = 0; j < 10; j++) {
+            final int carNumber1 = j;
+            double requestedFuel1 = 5 + Math.random() * 20;
 
-
-        List<Boyscout> scouts = List.of(
-                new Boyscout("Alex", 18, Team.red),
-                new Boyscout("Sergey", 15, Team.blue),
-                new Boyscout("Michael", 20, Team.red),
-                new Boyscout("John", 17, Team.blue),
-                new Boyscout("Bob", 16, Team.white)
-        );
-
-        Camp camp = new Camp(scouts);
-
-        Map<Team, List<Boyscout>> groupedScouts = camp.split();
-
-        System.out.println("{");
-        for (Map.Entry<Team, List<Boyscout>> entry : groupedScouts.entrySet()) {
-            System.out.println("\"" + entry.getKey().name() + "\", " + entry.getValue());
+            executor.submit(() -> {
+                try {
+                    System.out.println(Thread.currentThread().getName() + " подъехал к заправке");
+                    station.doTank(requestedFuel1);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Автомобиль " + carNumber1 + " прерван");
+                } catch (IllegalStateException e) {
+                    System.out.println("Автомобиль " + carNumber1 + ":" + e.getMessage());
+                }
+            });
         }
-        System.out.println("}");
-
-
+        executor.shutdown();
     }
-
-
-    public static void randomInt() {
-        Random random = new Random();
-        List<Integer> arrayList = IntStream.iterate(random.nextInt(1, 1001), i -> random.nextInt(1, 1001)).
-                limit(100).
-                boxed().
-                toList();
-        System.out.println(arrayList);
-        List<Integer> result = arrayList.stream().
-                sorted().
-                limit(10).
-                distinct().
-                sorted(Comparator.reverseOrder()).
-                toList();
-        System.out.println(result);
-    }
-
-    public static <T> List<T> filterCollection(Collection<T> input, Predicate<T> predicate) {
-        return input.stream().
-                filter(predicate).
-                collect(Collectors.toList());
-    }
-
-    public static String filterCollectionPredicat(Collection<String> strings, Predicate<String> predicate) {
-        return strings.stream().
-                filter(predicate).
-                collect(Collectors.joining("|"));
-    }
-
-    public enum SortDirection {
-        ASC, DESC
-    }
-
-    public static List<Integer> uniqueSorted(Collection<Integer> numbers, SortDirection direction) {
-        Comparator<Integer> comparator = (direction == SortDirection.ASC)
-                ? Comparator.naturalOrder()
-                : Comparator.reverseOrder();
-
-        return numbers.stream().distinct().sorted(comparator).collect(Collectors.toList());
-    }
-
-    public static long factorial(int n) {
-        if (n < 0 || n > 12) throw new IllegalArgumentException();
-
-        return Stream.iterate(1, i -> i <= n, i -> i + 1)
-                .reduce(1, (a, b) -> a * b);
-    }
-
-
 }
