@@ -1,0 +1,31 @@
+Test class: Test.CalculatorTest
+Start time: 2026-01-23 19:59:48
+End time: 2026-01-23 19:59:48
+
+---------------------------Test---------------------------
+testSubtract         | current: 3           | toCurrent: 3                   | True
+testMultiply         | current: 18          | toCurrent: 18                  | True
+testDivide           | current: 2.0         | toCurrent: 2.0                 | True
+testSum              | current: 6           | toCurrent: 5                   | False
+
+
+Test class: Test.CalculatorLineTest
+Start time: 2026-01-23 19:59:48
+End time: 2026-01-23 19:59:48
+
+---------------------------Test---------------------------
+testSubtractLine     | expectedSubstring: '6 - 3'                                   | line: '6 - 3 = 3'              | True
+testSumLine          | expectedSubstring: '2 + 3'                                   | line: '2 + 3 = 5'              | True
+testMultiplyLine     | expectedSubstring: '2 * 3'                                   | line: '2 * 3 = 6'              | True
+testDivideLine       | expectedSubstring: '6 / 3'                                   | line: '6 / 3 = 2.0'            | True
+
+
+Test class: Test.ArrayTest
+Start time: 2026-01-23 19:59:48
+End time: 2026-01-23 19:59:48
+
+---------------------------Test---------------------------
+testIntegerArray     | current: [1, 2, 3, 4, 5, 6, 7] | toCurrent: [2, 3, 4]           | True
+testStringArray      | current: [Mama, Asa] | toCurrent: [Mama, Assa]        | False
+
+
