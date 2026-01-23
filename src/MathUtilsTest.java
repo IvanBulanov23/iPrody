@@ -3,10 +3,7 @@ public class MathUtilsTest {
     public static void beforeSuite(){
         System.out.println("beforeSuite");
     }
-    /*@BeforeSuite
-    public static void beforeSuite2(){
-        System.out.println("beforeSuite");
-    }*/ // тест
+
     @Test(order = 2)
     public static void testSum(){
         if(Calculator.sum(2,5)==7){
