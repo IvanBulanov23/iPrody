@@ -18,7 +18,6 @@ public class Main {
         Runner runner = new TestAutomationRunner(printer);
         runner.run(List.of(CalculatorTest.class, CalculatorLineTest.class, ArrayTest.class));
 
-
         FilePrinter filePrinter = new FilePrinter("yyyy-MM-dd HH:mm:ss", Paths.get("test_results.txt"));
         Runner runnerFile = new ExtendedTestAutomationRunner(filePrinter);
         runnerFile.run(List.of(CalculatorTest.class, CalculatorLineTest.class, ArrayTest.class));
